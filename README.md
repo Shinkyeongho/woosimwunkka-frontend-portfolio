@@ -1,6 +1,6 @@
 # 우심운까 | Frontend Contribution Portfolio
 
-> **공공데이터 기반 운동 추천 결과를 사용자가 이해하고 실행할 수 있는 화면과 인터랙션으로 구현한 Frontend 기여 포트폴리오**
+> **공공데이터 기반 운동 추천 결과를 사용자 경험으로 연결한 Frontend 기여 포트폴리오**
 
 **Role · Frontend Development · UI/UX · Presentation**  
 **Personal contribution portfolio by 신경호 (Shinkyeongho)**  
