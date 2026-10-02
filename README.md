@@ -313,34 +313,25 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 WooSimWunKka-Frontend-Portfolio/
 ├── README.md                    # 채용/면접용 메인 포트폴리오
 ├── CONTRIBUTIONS.md             # 팀 구현 vs 개인 기여 경계
-├── PORTFOLIO_PLAN.md            # 분석 결론과 저장소 설계 계획
-├── INTERVIEW_GUIDE.md           # 예상 면접 질문과 답변
 ├── IMPROVEMENT_ROADMAP.md       # 보완점과 확장 계획
 ├── NOTICE.md                    # 팀 프로젝트/저작권 범위 안내
-├── UPLOAD_GUIDE.md              # 별도 Public repo 업로드 방법
 ├── docs/
 │   ├── screenshots/             # 최종 서비스 화면
 │   ├── slides/                  # 발표 협업 산출물
-│   ├── architecture/            # Mermaid 기반 구조도
-│   ├── case-studies/            # 문제 → 판단 → 구현 → 배움
-│   └── analysis/                # 최종 ZIP 분석/보안 검수
-└── snippets/                    # 면접용 Frontend 코드 발췌
+│   ├── architecture/            # 실제 구현 기반 흐름도
+│   └── case-studies/            # 문제 → 판단 → 구현 → 배움
+└── snippets/                    # Frontend 구현 이해를 위한 코드 발췌
 ```
 
 ---
 
-## 16. Verification basis
+## 16. Quality checks
 
-이 포트폴리오는 제공된 **최종 ZIP 전체(248 entries / 218 actual files in extracted project tree)** 를 기준으로 분석했습니다.
+공개 포트폴리오에 포함된 구현 설명과 코드 발췌는 최종 프로젝트 소스를 기준으로 검토했습니다.
 
-- Final snapshot commit marker in ZIP: `89c155f0eff166fd41546e5422e1c31aee85bd3a`
-- Uploaded ZIP SHA-256: `8a4fd98d603c8122677c585ae44731662104e431a7860303f37d06e7ee0fdc31`
 - Python source compile check: **PASS**
 - JavaScript syntax check (`node --check`): **PASS**
-- Secret literal scan: **no real API key / DB URL / token literal detected**
-
-분석 상세: [`docs/analysis/PROJECT_ANALYSIS.md`](docs/analysis/PROJECT_ANALYSIS.md)  
-보안 검수: [`docs/analysis/SECURITY_REVIEW.md`](docs/analysis/SECURITY_REVIEW.md)
+- Secret literal scan: **실제 API Key / DB URL / Token 값 미포함 확인**
 
 ---
 
