@@ -9,6 +9,17 @@ Team project: [encore-ai-campus/mlo-02-p1-team3](https://github.com/encore-ai-ca
 > 4인 팀 프로젝트에서 **Frontend 공동 개발 및 발표자료**를 담당했습니다.  
 > 이 저장소는 팀 전체 결과물을 개인 프로젝트처럼 재포장하지 않고, **제가 면접에서 직접 설명할 수 있는 Frontend 기여와 협업 지점**을 중심으로 정리했습니다.
 
+### Project Facts
+
+| Item | Detail |
+|---|---|
+| Project | **우심운까 — 우리 심심한데 운동이나 할까?** |
+| Period | **2026.09 – 2026.10** |
+| Team | **4명** |
+| Context | **2026 국민체육진흥공단 공공데이터 활용 경진대회 · 서비스 개발 부문** |
+| My Role | **Frontend Development · UI/UX · Presentation** |
+| Status | **Completed** |
+
 ---
 
 ## 1. My Role & Contribution
@@ -86,22 +97,33 @@ Frontend 공동 개발 중 저는 **서비스 화면·추천 결과 표현·AI �
 
 ---
 
-## 5. Frontend Flow
+## 5. Technical Decisions & Trade-offs
+
+단순히 화면을 구현하는 데서 끝내지 않고, **프로젝트 제약과 사용자 경험을 함께 고려해 어떤 구조를 선택했는지**를 정리했습니다.
+
+| Decision | Why | Trade-off / Next step |
+|---|---|---|
+| **Django Template + Vanilla JavaScript** | 제한된 프로젝트 기간 안에서 Django의 사용자·세션 context와 빠르게 연결하고, 별도 SPA 레이어 없이 서비스 화면을 완성하기 위해 사용했습니다. | 구현 속도에는 유리했지만 기능이 늘면서 상태·DOM 로직이 커졌습니다. 재개발한다면 ES Module과 공통 component 구조로 분리하고 싶습니다. |
+| **Server state와 localStorage 역할 분리** | 추천 결과·운동 기록처럼 서비스의 기준이 되는 데이터는 서버 상태를 사용하고, NPC 위치처럼 서버 저장이 필요 없는 UI 선호는 `localStorage`에 보존했습니다. | UI 상태가 늘어나면 브라우저 상태와 서버 상태의 경계가 복잡해질 수 있어 명시적인 상태 관리 규칙이 필요합니다. |
+| **추천 점수보다 설명 가능성을 우선한 UI** | 높은 점수만 보여주면 사용자가 추천 이유를 이해하기 어렵다고 판단해 거리·날씨·대기질·운영정보를 근거로 분리해 표현했습니다. | 정보가 많아질수록 화면 밀도가 높아지므로 핵심 근거의 우선순위와 progressive disclosure가 중요합니다. |
+
+---
+
+## 6. Frontend Flow
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[프로필 기본값] --> B[추천 조건 입력]
-    B --> C[Fetch: nearby-facilities-data]
+    B --> C[추천 API 요청]
     C --> D[추천 카드 렌더링]
-    D --> E[점수·환경·안전 근거 상세]
-    E --> F[운동 장소 결정]
-    F --> G[선택 저장]
-    G --> H[카카오맵 이동]
+    D --> E[점수·환경·운영 근거 확인]
+    E --> F[운동 장소 선택]
+    F --> G[선택 저장 및 지도 이동]
 
-    D --> I[우심이 AI 코치]
-    I --> J[POST /api/chatbot/]
-    J --> K[서버 응답 + 추천 후보]
-    K --> I
+    D --> H[우심이 AI 코치]
+    H --> I[Django Chatbot API]
+    I --> J[응답 및 추천 카드 표시]
+    J --> H
 ```
 
 더 자세한 구조:
@@ -111,7 +133,7 @@ flowchart LR
 
 ---
 
-## 6. Key Contribution 01 — 추천 결과를 “설명 가능한 화면”으로 만들기
+## 7. Key Contribution 01 — 추천 결과를 “설명 가능한 화면”으로 만들기
 
 ### 문제
 
@@ -142,7 +164,7 @@ flowchart LR
 
 ---
 
-## 7. Key Contribution 02 — AI 운동 코치를 “페이지 위 NPC”로 통합
+## 8. Key Contribution 02 — AI 운동 코치를 “페이지 위 NPC”로 통합
 
 ### 문제
 
@@ -178,7 +200,7 @@ AI 응답을 그대로 `innerHTML`에 넣지 않고 먼저 HTML special characte
 
 ---
 
-## 8. Key Contribution 03 — 입력 단계의 마찰 줄이기
+## 9. Key Contribution 03 — 입력 단계의 마찰 줄이기
 
 추천 화면에서는 사용자에게 필요한 조건을 한 번에 길게 요구하지 않고, **위치 → 가능한 시간 → 운동 → 이동 조건** 순으로 읽을 수 있게 구성했습니다.
 
@@ -195,7 +217,7 @@ AI 응답을 그대로 `innerHTML`에 넣지 않고 먼저 HTML special characte
 
 ---
 
-## 9. Key Contribution 04 — 캐릭터와 운동 기록을 서비스 경험으로 연결
+## 10. Key Contribution 04 — 캐릭터와 운동 기록을 서비스 경험으로 연결
 
 우심운까는 단순한 시설 검색 화면보다 **다시 들어오고 싶은 운동 공간**을 목표로 했습니다.
 
@@ -216,7 +238,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 10. Key Contribution 05 — 공공데이터 출처를 UI에서 보이게 하기
+## 11. Key Contribution 05 — 공공데이터 출처를 UI에서 보이게 하기
 
 공공데이터 기반 서비스인데 사용자가 출처를 전혀 인식하지 못하면, 서비스의 데이터 기반 특성이 화면에서 약해질 수 있습니다.
 
@@ -236,7 +258,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 11. Presentation & Technical Communication
+## 12. Presentation & Technical Communication
 
 제 역할에는 **발표자료 준비**도 포함되었습니다. 기술을 구현하는 것뿐 아니라, 다음 내용을 비개발자도 이해할 수 있도록 구조화하는 과정에 참여했습니다.
 
@@ -252,7 +274,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 12. Contribution Matrix
+## 13. Contribution Matrix
 
 | Feature / Area | My contribution | Team contribution | Scope label |
 |---|---|---|---|
@@ -269,7 +291,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 13. What I learned
+## 14. What I learned
 
 > **기술적 완성도는 사용자가 그 기능을 이해하고 사용할 수 있을 때 비로소 서비스 가치로 전달된다는 점을 배웠습니다.**
 
@@ -281,7 +303,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 14. What I would improve next
+## 15. What I would improve next
 
 최종 결과물을 다시 개발한다면 다음 순서로 고도화하고 싶습니다.
 
@@ -307,7 +329,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 15. Repository Guide
+## 16. Repository Guide
 
 ```text
 WooSimWunKka-Frontend-Portfolio/
@@ -325,13 +347,14 @@ WooSimWunKka-Frontend-Portfolio/
 
 ---
 
-## 16. Quality checks
+## 17. Repository Validation
 
-공개 포트폴리오에 포함된 구현 설명과 코드 발췌는 최종 프로젝트 소스를 기준으로 검토했습니다.
+공개 포트폴리오에 포함된 구현 설명과 코드 발췌는 최종 프로젝트 소스를 기준으로 검토했습니다. 아래 항목은 **소스 공개 전 기본 검증 범위**이며, 자동화된 제품 테스트와는 구분합니다.
 
 - Python source compile check: **PASS**
 - JavaScript syntax check (`node --check`): **PASS**
 - Secret literal scan: **실제 API Key / DB URL / Token 값 미포함 확인**
+- Automated unit/E2E test suite: **최종 프로젝트에는 미도입** — Playwright 기반 핵심 사용자 Flow 테스트를 다음 개선 과제로 정의
 
 ---
 
