@@ -1,16 +1,49 @@
 # 우심운까 | Frontend Contribution Portfolio
 
-> **공공데이터 기반 생활체육 추천 서비스의 사용자 경험을 화면과 인터랙션으로 연결한 4인 팀 프로젝트 기여 포트폴리오**
+> **공공데이터 기반 운동 추천 결과를 사용자가 이해하고 실행할 수 있는 화면과 인터랙션으로 구현한 Frontend 기여 포트폴리오**
 
+**Role · Frontend Development · UI/UX · Presentation**  
 **Personal contribution portfolio by 신경호 (Shinkyeongho)**  
 Team project: [encore-ai-campus/mlo-02-p1-team3](https://github.com/encore-ai-campus/mlo-02-p1-team3)
 
-> This repository is a personal contribution portfolio derived from a team project.  
-> 팀 프로젝트 전체를 개인 프로젝트처럼 재포장하지 않고, **제가 맡은 Frontend · UI/UX · 발표자료 영역과 실제 최종 구현에서 확인 가능한 기여 지점**을 중심으로 정리했습니다.
+> 4인 팀 프로젝트에서 **Frontend 공동 개발 및 발표자료**를 담당했습니다.  
+> 이 저장소는 팀 전체 결과물을 개인 프로젝트처럼 재포장하지 않고, **제가 면접에서 직접 설명할 수 있는 Frontend 기여와 협업 지점**을 중심으로 정리했습니다.
 
 ---
 
-## 1. Project at a glance
+## 1. My Role & Contribution
+
+### My Role — 신경호
+
+최종 팀 README 기준 제 역할은 **Frontend · 발표자료**이며, Frontend는 **신경호·류지예 공동 담당**으로 진행했습니다.
+
+제가 특히 집중한 영역은 다음과 같습니다.
+
+| Focus | Contribution |
+|---|---|
+| 서비스 화면 | Django Template 기반 주요 화면 구현·고도화 및 공통 UI 구성 |
+| 추천 UX | 추천 조건 입력 → 결과 카드 → 상세 근거 → 장소 선택 흐름의 Frontend 연동 |
+| 설명 가능한 추천 | 점수·거리·날씨·대기질·운영정보를 사용자가 이해할 수 있도록 UI로 구조화 |
+| AI 운동 코치 `우심이` | NPC형 챗봇 UI, 메시지·추천 카드 인터랙션, Django API 연동 UI |
+| 캐릭터 경험 | 캐릭터·미니룸 기반 인터랙션과 서비스 톤앤매너 유지 |
+| 데이터 출처 UI | 공공데이터 출처를 서비스 화면에서 인지할 수 있도록 구성 |
+| 발표자료 | 프로젝트 핵심 흐름과 구현 결과를 시연·발표 관점으로 구조화 |
+
+> **Contribution boundary**  
+> 추천 점수 계산, 데이터 수집·정제·파이프라인, DB 구축, OpenAI 서버 호출 로직은 **Team implementation**입니다.  
+> 이 포트폴리오는 해당 기능을 사용자가 이해하고 조작할 수 있도록 연결한 **Frontend 구현·연동 경험**을 중심으로 설명합니다.
+
+자세한 역할 구분: [`CONTRIBUTIONS.md`](CONTRIBUTIONS.md)
+
+### Representative Work
+
+| HOME | 추천 결과 |
+|---|---|
+| ![HOME](docs/screenshots/01-home.jpg) | ![추천 결과](docs/screenshots/04-recommendation-results.jpg) |
+
+---
+
+## 2. Project at a glance
 
 **우심운까(우리 심심한데 운동이나 할까?)** 는 사용자의 지역·운동 선호·이동 조건과 체육시설, 날씨, 대기질, 운영정보를 결합해 **“지금 실제로 가기 좋은 운동 장소”** 를 추천하고, 운동 기록을 레벨·캐릭터·방 꾸미기와 연결해 지속적인 운동을 돕는 웹서비스입니다.
 
@@ -22,19 +55,9 @@ Team project: [encore-ai-campus/mlo-02-p1-team3](https://github.com/encore-ai-ca
 | 친구 기능 | 친구 코드 조회, 요청·수락, 친구 운동방 방문, 한마디 |
 | AI 운동 코치 `우심이` | Django 서버를 통해 질문·추천 context를 전달받아 대화형 운동 도움 제공 |
 
-### 주요 화면
-
-| HOME | 추천 결과 |
-|---|---|
-| ![HOME](docs/screenshots/01-home.jpg) | ![추천 결과](docs/screenshots/04-recommendation-results.jpg) |
-
-| 추천 상세 | AI 운동 코치 |
-|---|---|
-| ![추천 상세](docs/screenshots/05-recommendation-detail.jpg) | ![AI 코치](docs/screenshots/06-ai-coach.png) |
-
 ---
 
-## 2. Team & My Role
+## 3. Team & Scope
 
 프로젝트는 **4인 팀 프로젝트**로 진행했습니다.
 
@@ -44,27 +67,11 @@ Team project: [encore-ai-campus/mlo-02-p1-team3](https://github.com/encore-ai-ca
 | 서비스 기획 · 데이터 엔지니어링 | 백선영 |
 | Backend · 프로젝트 전반 | 김형준 |
 
-### My Role — 신경호
-
-최종 팀 README에 기록된 제 역할은 **Frontend · 발표자료**이며, 담당 업무는 **서비스 화면 구현, 사용자 인터페이스 구성, 발표자료 준비**입니다.
-
-제가 이 포트폴리오에서 집중적으로 설명하는 기여 영역은 다음과 같습니다.
-
-1. **서비스 화면과 공통 UI shell 구성/고도화**
-2. **추천 조건 입력 → 결과 카드 → 상세 근거 → 장소 결정 흐름의 Frontend 연동**
-3. **AI 운동 코치 `우심이`의 NPC형 UI, 메시지/추천 카드 인터랙션, Django API 연동 UI**
-4. **캐릭터·미니룸 기반 인터랙션과 서비스 톤앤매너 유지**
-5. **공공데이터 출처를 사용자가 인지할 수 있는 UI 구성**
-6. **프로젝트 결과를 발표자료와 시연 화면으로 구조화**
-
-> **Contribution boundary**  
-> 추천 점수 계산, 데이터 수집·정제·파이프라인, DB 구축, OpenAI 호출 로직 자체를 제가 단독 구현했다고 주장하지 않습니다. 해당 기능을 **사용자가 이해하고 조작할 수 있는 화면으로 연결한 Frontend 영역**을 중심으로 설명합니다.
-
-자세한 구분은 [`CONTRIBUTIONS.md`](CONTRIBUTIONS.md)에서 확인할 수 있습니다.
+Frontend 공동 개발 중 저는 **서비스 화면·추천 결과 표현·AI 코치 인터랙션·사용자 흐름 연결과 발표자료 구성**을 중심으로 참여했습니다.
 
 ---
 
-## 3. Tech Stack I Worked With
+## 4. Tech Stack I Worked With
 
 | Category | Stack | Portfolio focus |
 |---|---|---|
@@ -79,7 +86,7 @@ Team project: [encore-ai-campus/mlo-02-p1-team3](https://github.com/encore-ai-ca
 
 ---
 
-## 4. Frontend Flow
+## 5. Frontend Flow
 
 ```mermaid
 flowchart LR
@@ -104,7 +111,7 @@ flowchart LR
 
 ---
 
-## 5. Key Contribution 01 — 추천 결과를 “설명 가능한 화면”으로 만들기
+## 6. Key Contribution 01 — 추천 결과를 “설명 가능한 화면”으로 만들기
 
 ### 문제
 
@@ -135,7 +142,7 @@ flowchart LR
 
 ---
 
-## 6. Key Contribution 02 — AI 운동 코치를 “페이지 위 NPC”로 통합
+## 7. Key Contribution 02 — AI 운동 코치를 “페이지 위 NPC”로 통합
 
 ### 문제
 
@@ -171,7 +178,7 @@ AI 응답을 그대로 `innerHTML`에 넣지 않고 먼저 HTML special characte
 
 ---
 
-## 7. Key Contribution 03 — 입력 단계의 마찰 줄이기
+## 8. Key Contribution 03 — 입력 단계의 마찰 줄이기
 
 추천 화면에서는 사용자에게 필요한 조건을 한 번에 길게 요구하지 않고, **위치 → 가능한 시간 → 운동 → 이동 조건** 순으로 읽을 수 있게 구성했습니다.
 
@@ -188,7 +195,7 @@ AI 응답을 그대로 `innerHTML`에 넣지 않고 먼저 HTML special characte
 
 ---
 
-## 8. Key Contribution 04 — 캐릭터와 운동 기록을 서비스 경험으로 연결
+## 9. Key Contribution 04 — 캐릭터와 운동 기록을 서비스 경험으로 연결
 
 우심운까는 단순한 시설 검색 화면보다 **다시 들어오고 싶은 운동 공간**을 목표로 했습니다.
 
@@ -209,7 +216,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 9. Key Contribution 05 — 공공데이터 출처를 UI에서 보이게 하기
+## 10. Key Contribution 05 — 공공데이터 출처를 UI에서 보이게 하기
 
 공공데이터 기반 서비스인데 사용자가 출처를 전혀 인식하지 못하면, 서비스의 데이터 기반 특성이 화면에서 약해질 수 있습니다.
 
@@ -229,7 +236,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 10. Presentation & Technical Communication
+## 11. Presentation & Technical Communication
 
 제 역할에는 **발표자료 준비**도 포함되었습니다. 기술을 구현하는 것뿐 아니라, 다음 내용을 비개발자도 이해할 수 있도록 구조화하는 과정에 참여했습니다.
 
@@ -245,7 +252,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 11. Contribution Matrix
+## 12. Contribution Matrix
 
 | Feature / Area | My contribution | Team contribution | Scope label |
 |---|---|---|---|
@@ -262,7 +269,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 12. What I learned
+## 13. What I learned
 
 > **기술적 완성도는 사용자가 그 기능을 이해하고 사용할 수 있을 때 비로소 서비스 가치로 전달된다는 점을 배웠습니다.**
 
@@ -274,7 +281,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 13. What I would improve next
+## 14. What I would improve next
 
 최종 결과물을 다시 개발한다면 다음 순서로 고도화하고 싶습니다.
 
@@ -300,7 +307,7 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ---
 
-## 14. Repository Guide
+## 15. Repository Guide
 
 ```text
 WooSimWunKka-Frontend-Portfolio/
@@ -322,7 +329,7 @@ WooSimWunKka-Frontend-Portfolio/
 
 ---
 
-## 15. Verification basis
+## 16. Verification basis
 
 이 포트폴리오는 제공된 **최종 ZIP 전체(248 entries / 218 actual files in extracted project tree)** 를 기준으로 분석했습니다.
 
