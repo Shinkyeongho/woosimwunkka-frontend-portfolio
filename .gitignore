@@ -1,0 +1,31 @@
+# Secrets / environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*
+secrets*
+
+# Python / Django
+__pycache__/
+*.py[cod]
+*.sqlite3
+staticfiles/
+.venv/
+venv/
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local outputs
+output/
+dist/
+build/
+*.log
+*.zip
