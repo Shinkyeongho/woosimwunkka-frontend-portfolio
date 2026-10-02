@@ -126,39 +126,34 @@ Frontend 공동 개발 중 저는 **서비스 화면·추천 결과 표현·AI �
 
 ## 6. Frontend Flow
 
+사용자 입력부터 추천 결과, 장소 선택, AI Coach까지의 상호작용을 **Frontend 관점의 요청·응답 흐름**으로 정리했습니다.
+
 ```mermaid
-flowchart TB
-    subgraph INPUT["01 · 추천 조건"]
-        A["프로필 기본값"] --> B["지역 · 시간 · 운동 · 이동 조건"]
+sequenceDiagram
+    autonumber
+    actor U as 사용자
+    participant F as Frontend
+    participant R as 추천 API
+    participant C as AI Coach API
+
+    U->>F: 지역 · 시간 · 운동 · 이동 조건 입력
+    F->>R: 추천 요청
+    R-->>F: 추천 결과 + 점수/환경/운영 근거
+    F-->>U: 추천 카드 · 상세 근거 렌더링
+
+    alt 운동 장소 선택
+        U->>F: 장소 선택
+        F->>F: 선택 상태 저장
+        F-->>U: 지도 이동
+    else 우심이에게 추천 맥락 질문
+        U->>F: AI Coach 열기 · 질문 입력
+        F->>C: Django Chatbot API 요청
+        C-->>F: 응답 + 추천 카드 데이터
+        F-->>U: NPC 대화 UI · 추천 카드 표시
     end
-
-    subgraph RECOMMEND["02 · 추천 경험"]
-        C["추천 API 요청"] --> D["추천 카드 렌더링"] --> E["점수 · 환경 · 운영 근거 확인"]
-    end
-
-    subgraph ACTION["03 · 사용자 행동"]
-        F["운동 장소 선택"] --> G["선택 저장"] --> H["지도 이동"]
-    end
-
-    subgraph COACH["AI Coach · 우심이"]
-        I["NPC 열기"] --> J["Django Chatbot API"] --> K["응답 · 추천 카드 표시"]
-        K -. "대화 계속" .-> I
-    end
-
-    B --> C
-    E --> F
-    D -. "추천 맥락 질문" .-> I
-
-    classDef input fill:#F8F3E8,stroke:#B29B69,stroke-width:1.4px,color:#2E332F;
-    classDef recommend fill:#EDF4EE,stroke:#708A72,stroke-width:1.4px,color:#243128;
-    classDef action fill:#F4F2EC,stroke:#8D887A,stroke-width:1.4px,color:#33312C;
-    classDef coach fill:#F2EFF6,stroke:#8977A2,stroke-width:1.4px,color:#30283A;
-
-    class A,B input;
-    class C,D,E recommend;
-    class F,G,H action;
-    class I,J,K coach;
 ```
+
+> **Frontend scope** · 사용자 입력/상태 처리, 추천 결과 렌더링, 근거 표현, 장소 선택 흐름, AI Coach UI와 API 연동을 중심으로 표시했습니다. 추천 점수 계산과 AI 서버 내부 로직은 Team implementation입니다.
 
 더 자세한 구조:
 - [`docs/architecture/frontend-flow.md`](docs/architecture/frontend-flow.md)
