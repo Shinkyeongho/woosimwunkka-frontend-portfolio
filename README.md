@@ -1,11 +1,25 @@
-# 우심운까 | Frontend Contribution Portfolio
+<h1 align="center">우심운까</h1>
+<p align="center"><strong>Frontend Contribution Portfolio</strong></p>
+<p align="center">공공데이터 기반 운동 추천 결과를 사용자 경험으로 연결한 Frontend 기여 포트폴리오</p>
 
-> **공공데이터 기반 운동 추천 결과를 사용자 경험으로 연결한 Frontend 기여 포트폴리오**
+<p align="center">
+  <code>Frontend</code> · <code>Django Template</code> · <code>Vanilla JavaScript</code> · <code>UI/UX</code> · <code>4-person Team</code>
+</p>
+
+<p align="center">
+  <a href="#1-my-role--contribution">My Role</a> ·
+  <a href="#5-technical-decisions--trade-offs">Tech Decisions</a> ·
+  <a href="#6-frontend-flow">Frontend Flow</a> ·
+  <a href="#13-contribution-matrix">Contribution Matrix</a> ·
+  <a href="https://github.com/encore-ai-campus/mlo-02-p1-team3">Team Repository</a>
+</p>
+
+---
 
 **Role · Frontend Development · UI/UX · Presentation**  
 **Personal contribution portfolio by 신경호 (Shinkyeongho)**  
-Team project: [encore-ai-campus/mlo-02-p1-team3](https://github.com/encore-ai-campus/mlo-02-p1-team3)
 
+> [!NOTE]
 > 4인 팀 프로젝트에서 **Frontend 공동 개발 및 발표자료**를 담당했습니다.  
 > 이 저장소는 팀 전체 결과물을 개인 프로젝트처럼 재포장하지 않고, **제가 면접에서 직접 설명할 수 있는 Frontend 기여와 협업 지점**을 중심으로 정리했습니다.
 
@@ -40,6 +54,7 @@ Team project: [encore-ai-campus/mlo-02-p1-team3](https://github.com/encore-ai-ca
 | 데이터 출처 UI | 공공데이터 출처를 서비스 화면에서 인지할 수 있도록 구성 |
 | 발표자료 | 프로젝트 핵심 흐름과 구현 결과를 시연·발표 관점으로 구조화 |
 
+> [!IMPORTANT]
 > **Contribution boundary**  
 > 추천 점수 계산, 데이터 수집·정제·파이프라인, DB 구축, OpenAI 서버 호출 로직은 **Team implementation**입니다.  
 > 이 포트폴리오는 해당 기능을 사용자가 이해하고 조작할 수 있도록 연결한 **Frontend 구현·연동 경험**을 중심으로 설명합니다.
@@ -112,18 +127,37 @@ Frontend 공동 개발 중 저는 **서비스 화면·추천 결과 표현·AI �
 ## 6. Frontend Flow
 
 ```mermaid
-flowchart TD
-    A[프로필 기본값] --> B[추천 조건 입력]
-    B --> C[추천 API 요청]
-    C --> D[추천 카드 렌더링]
-    D --> E[점수·환경·운영 근거 확인]
-    E --> F[운동 장소 선택]
-    F --> G[선택 저장 및 지도 이동]
+flowchart TB
+    subgraph INPUT["01 · 추천 조건"]
+        A["프로필 기본값"] --> B["지역 · 시간 · 운동 · 이동 조건"]
+    end
 
-    D --> H[우심이 AI 코치]
-    H --> I[Django Chatbot API]
-    I --> J[응답 및 추천 카드 표시]
-    J --> H
+    subgraph RECOMMEND["02 · 추천 경험"]
+        C["추천 API 요청"] --> D["추천 카드 렌더링"] --> E["점수 · 환경 · 운영 근거 확인"]
+    end
+
+    subgraph ACTION["03 · 사용자 행동"]
+        F["운동 장소 선택"] --> G["선택 저장"] --> H["지도 이동"]
+    end
+
+    subgraph COACH["AI Coach · 우심이"]
+        I["NPC 열기"] --> J["Django Chatbot API"] --> K["응답 · 추천 카드 표시"]
+        K -. "대화 계속" .-> I
+    end
+
+    B --> C
+    E --> F
+    D -. "추천 맥락 질문" .-> I
+
+    classDef input fill:#F8F3E8,stroke:#B29B69,stroke-width:1.4px,color:#2E332F;
+    classDef recommend fill:#EDF4EE,stroke:#708A72,stroke-width:1.4px,color:#243128;
+    classDef action fill:#F4F2EC,stroke:#8D887A,stroke-width:1.4px,color:#33312C;
+    classDef coach fill:#F2EFF6,stroke:#8977A2,stroke-width:1.4px,color:#30283A;
+
+    class A,B input;
+    class C,D,E recommend;
+    class F,G,H action;
+    class I,J,K coach;
 ```
 
 더 자세한 구조:
@@ -331,6 +365,9 @@ Frontend에서는 다음 경험이 하나의 톤으로 보이도록 연결했습
 
 ## 16. Repository Guide
 
+<details>
+<summary><strong>폴더 구조 펼쳐보기</strong></summary>
+
 ```text
 WooSimWunKka-Frontend-Portfolio/
 ├── README.md                    # 채용/면접용 메인 포트폴리오
@@ -345,9 +382,14 @@ WooSimWunKka-Frontend-Portfolio/
 └── snippets/                    # Frontend 구현 이해를 위한 코드 발췌
 ```
 
+</details>
+
 ---
 
 ## 17. Repository Validation
+
+<details>
+<summary><strong>공개 전 검증 범위 펼쳐보기</strong></summary>
 
 공개 포트폴리오에 포함된 구현 설명과 코드 발췌는 최종 프로젝트 소스를 기준으로 검토했습니다. 아래 항목은 **소스 공개 전 기본 검증 범위**이며, 자동화된 제품 테스트와는 구분합니다.
 
@@ -356,6 +398,8 @@ WooSimWunKka-Frontend-Portfolio/
 - Secret literal scan: **실제 API Key / DB URL / Token 값 미포함 확인**
 - Automated unit/E2E test suite: **최종 프로젝트에는 미도입** — Playwright 기반 핵심 사용자 Flow 테스트를 다음 개선 과제로 정의
 
+</details>
+
 ---
 
 ## Team Project
@@ -363,4 +407,5 @@ WooSimWunKka-Frontend-Portfolio/
 - **Original Team Repository:** https://github.com/encore-ai-campus/mlo-02-p1-team3
 - **Personal GitHub:** https://github.com/Shinkyeongho
 
+> [!NOTE]
 > 팀 프로젝트의 전체 코드와 Backend/Data 구현은 원본 Team Repository에서 확인할 수 있습니다. 이 저장소는 전체 프로젝트의 복제본이 아니라 **신경호의 Frontend contribution을 빠르게 리뷰하기 위한 포트폴리오**입니다.
